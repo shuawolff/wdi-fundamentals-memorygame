@@ -81,6 +81,16 @@ footer {
 	font-weight: 500;
 }
 
+button {
+	text-align: center;
+	padding: 20px 40px;
+	font-size: 15px;
+	font-family: 'Raleway', sans-serif;
+	background-color: #F15B31;
+	color: white;
+
+}
+
 .copyright, .message {
 	font-family: Raleway;
 }
@@ -105,5 +115,9 @@ footer {
 .name {
 	color: #F15B31;
 	font-weight: 700;
+}
+
+#reset {
+	visibility: hidden;
 }
 

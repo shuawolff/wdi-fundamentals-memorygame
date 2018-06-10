@@ -28,19 +28,50 @@ var checkForMatch = function() {
 	} else {
 		alert("Sorry, try again.");
 	}
+	changevisible()
 }
 
-var flipCard = function(cardId) {
+var flipCard = function() {
+	var cardId = this.getAttribute('data-id');
 	console.log("User flipped " + cards[cardId].rank)
 	console.log(cards[cardId].cardImage)
 	console.log(cards[cardId].suit)
 	cardsInPlay.push(cards[cardId].rank)
+	this.setAttribute('src', cards[cardId].cardImage);
 	if (cardsInPlay.length === 2) {
 		checkForMatch();
 }
 }
 
+var createBoard = function() {
+	for (var i = 0; i < cards.length; i++) {
+		var cardElement = document.createElement('img');
+		cardElement.setAttribute('src', 'images/back.png');
+		cardElement.setAttribute('data-id', i); 
+		cardElement.addEventListener('click', flipCard);
+		document.getElementById('game-board').appendChild(cardElement);
+	}
+}
 
+var removevisible = function() {
+	document.getElementById('reset').style.visibility = "hidden";
+}
 
-flipCard(0);
-flipCard(2);
+var changevisible = function() {
+	document.getElementById('reset').style.visibility = "visible";
+}
+
+var board = document.getElementById('game-board');
+
+var resetBoard = function() {
+	while (board.hasChildNodes()) {
+    board.removeChild(board.firstChild);
+	}
+	cardsInPlay.length = 0;
+	createBoard();
+	removevisible()
+}
+
+document.getElementById('reset').addEventListener('click', resetBoard);
+
+createBoard();
